@@ -1,0 +1,70 @@
+{
+    "greeting": "Hi Homer!",
+    "@greeting": {
+        "description": "Greeting message addressing the user by name."
+    },
+    "startHealthyDay": "Let's start your healthy day",
+    "@startHealthyDay": {
+        "description": "Motivational header encouraging user to begin a healthy day."
+    },
+    "kcalLeft": "Kcal left",
+    "@kcalLeft": {
+        "description": "Label showing how many kilocalories the user has left for the day."
+    },
+    "fat": "Fat",
+    "@fat": {
+        "description": "Label for the fat nutritional value."
+    },
+    "protein": "Pro",
+    "@protein": {
+        "description": "Label for protein nutritional value."
+    },
+    "carbohydrates": "Carb",
+    "@carbohydrates": {
+        "description": "Label for carbohydrate nutritional value."
+    },
+    "bestRecipesForYou": "Best recipes for you",
+    "@bestRecipesForYou": {
+        "description": "Title text for the recipe suggestion section."
+    },
+    "all": "All",
+    "@all": {
+        "description": "Filter option to show all recipes."
+    },
+    "breakfast": "Breakfast",
+    "@breakfast": {
+        "description": "Filter option for breakfast recipes."
+    },
+    "lunch": "Lunch",
+    "@lunch": {
+        "description": "Filter option for lunch recipes."
+    },
+    "dinner": "Dinner",
+    "@dinner": {
+        "description": "Filter option for dinner recipes."
+    },
+    "snack": "Snack",
+    "@snack": {
+        "description": "Filter option for snack recipes."
+    },
+    "lazyOatmeal": "Lazy Oatmeal",
+    "@lazyOatmeal": {
+        "description": "Name of the oatmeal recipe."
+    },
+    "recipeMeta": "12 ingredients · 45 min · 470 kcal",
+    "@recipeMeta": {
+        "description": "Recipe metadata showing ingredients count, preparation time, and calories."
+    },
+    "descriptionTitle": "Description",
+    "@descriptionTitle": {
+        "description": "Heading for the recipe description section."
+    },
+    "lazyOatmealDescription": "Lazy oatmeal is the perfect solution for busy mornings or for those who want a hassle-free, nutritious breakfast with minimal effort.",
+    "@lazyOatmealDescription": {
+        "description": "Full description text for the lazy oatmeal recipe."
+    },
+    "nutritionalValue": "Nutritional value",
+    "@nutritionalValue": {
+        "description": "Title for the nutritional breakdown section."
+    }
+}
