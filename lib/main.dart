@@ -1,9 +1,10 @@
 import 'package:calories/l10n/app_localizations.dart';
+import 'package:calories/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_sficon/flutter_sficon.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MainApp());
 }
 
@@ -22,26 +23,8 @@ class MainApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-
-      home: Scaffold(
-        body: Center(
-          child: Column(
-            spacing: 16,
-            children: [
-              Text(
-                'Let\'s start your\nhealthy day',
-                textAlign: TextAlign.start,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: -0.35,
-                ),
-              ),
-              SFIcon(SFIcons.sf_heart_fill),
-            ],
-          ),
-        ),
-      ),
+      routes: AppRoutes.routesMap,
+      initialRoute: AppRoutes.splash,
     );
   }
 }
