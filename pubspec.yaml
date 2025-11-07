@@ -9,6 +9,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
   flutter_sficon: ^1.2.1
   is_first_run: ^1.0.0
   shared_preferences: ^2.5.3
@@ -20,6 +23,8 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  generate: true
 
   fonts:
     - family: SFProDisplay
