@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_sficon: ^1.2.1
   is_first_run: ^1.0.0
   shared_preferences: ^2.5.3
 
