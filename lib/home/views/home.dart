@@ -1,4 +1,5 @@
 import 'package:calories/home/widgets/bar_chart.dart';
+import 'package:calories/utils/app_assets.dart';
 import 'package:calories/utils/app_spacing.dart';
 import 'package:calories/utils/extensions.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class _HomeState extends State<Home> {
                 color: Colors.grey.shade600,
               ),
             ),
-            AppSpacing.v14,
+            AppSpacing.v10,
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,7 +44,7 @@ class _HomeState extends State<Home> {
                 ),
                 CircleAvatar(
                   radius: context.deviceWt * 0.055,
-                  backgroundColor: Colors.amber,
+                  backgroundImage: AssetImage(AppAssets.profilePhoto),
                 ),
               ],
             ),
