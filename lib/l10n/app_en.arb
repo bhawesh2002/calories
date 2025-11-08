@@ -3,7 +3,7 @@
     "@greeting": {
         "description": "Greeting message addressing the user by name."
     },
-    "startHealthyDay": "Let's start your healthy day",
+    "startHealthyDay": "Let's start your\nhealthy day",
     "@startHealthyDay": {
         "description": "Motivational header encouraging user to begin a healthy day."
     },
