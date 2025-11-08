@@ -102,7 +102,7 @@ abstract class AppLocalizations {
   /// Motivational header encouraging user to begin a healthy day.
   ///
   /// In en, this message translates to:
-  /// **'Let\'s start your healthy day'**
+  /// **'Let\'s start your\nhealthy day'**
   String get startHealthyDay;
 
   /// Label showing how many kilocalories the user has left for the day.

@@ -12,7 +12,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get greeting => 'Hi Homer!';
 
   @override
-  String get startHealthyDay => 'Let\'s start your healthy day';
+  String get startHealthyDay => 'Let\'s start your\nhealthy day';
 
   @override
   String get kcalLeft => 'Kcal left';
