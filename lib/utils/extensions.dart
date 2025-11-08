@@ -18,7 +18,7 @@ extension DeviceDimensions on BuildContext {
 extension DevicePadding on BuildContext {
   Padding devicePadding(
     BuildContext context, {
-    required Column child,
+    required Widget child,
     double bottom = 12,
     double top = 12,
     double left = 16,
