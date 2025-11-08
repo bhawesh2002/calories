@@ -11,6 +11,7 @@ class BarCandle extends StatefulWidget {
   final double spacing;
   final double angle;
   final double lineWidth;
+  final bool animate;
   const BarCandle({
     super.key,
     required this.title,
@@ -21,6 +22,7 @@ class BarCandle extends StatefulWidget {
     this.angle = -90,
     this.radius = 12,
     this.lineWidth = 1,
+    this.animate = false,
   });
 
   @override
@@ -46,6 +48,18 @@ class _BarCandleState extends State<BarCandle>
     super.initState();
   }
 
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+  }
+
+  @override
+  void didUpdateWidget(covariant BarCandle oldWidget) {
+    if (oldWidget.animate != widget.animate) setSizeAnim();
+
+    super.didUpdateWidget(oldWidget);
+  }
+
   void setSizeAnim() async {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (_constraints != null) {
@@ -66,7 +80,7 @@ class _BarCandleState extends State<BarCandle>
                 curve: Interval(0.65, 1.0, curve: Curves.easeInOut),
               ),
             );
-        animationController.forward();
+        if (widget.animate) animationController.forward();
       } else {
         setSizeAnim();
       }
@@ -84,7 +98,11 @@ class _BarCandleState extends State<BarCandle>
             AnimatedOpacity(
               curve: Curves.ease,
               duration: const Duration(milliseconds: 300),
-              opacity: animationController.isCompleted ? 1 : 0,
+              opacity: widget.animate == true
+                  ? animationController.isCompleted
+                        ? 1
+                        : 0
+                  : 1,
               child: RichText(
                 text: TextSpan(
                   text: widget.title,
@@ -113,22 +131,19 @@ class _BarCandleState extends State<BarCandle>
                   _constraints = constraints;
                   return Align(
                     alignment: Alignment.bottomCenter,
-                    child: GestureDetector(
-                      onTap: () {
-                        animationController.forward(from: 0.0);
-                      },
-                      child: SizedBox(
-                        width: constraints.maxWidth,
-                        height: sizeAnim?.value.height ?? 0,
-                        child: CustomPaint(
-                          painter: BarCandlePainter(
-                            completed: widget.completed,
-                            spacing: widget.spacing,
-                            angle: widget.angle,
-                            color: widget.color,
-                            lineWidth: widget.lineWidth,
-                            radius: widget.radius,
-                          ),
+                    child: SizedBox(
+                      width: constraints.maxWidth,
+                      height: widget.animate == true
+                          ? sizeAnim?.value.height ?? 0
+                          : constraints.maxHeight,
+                      child: CustomPaint(
+                        painter: BarCandlePainter(
+                          completed: widget.completed,
+                          spacing: widget.spacing,
+                          angle: widget.angle,
+                          color: widget.color,
+                          lineWidth: widget.lineWidth,
+                          radius: widget.radius,
                         ),
                       ),
                     ),
