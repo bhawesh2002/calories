@@ -26,6 +26,9 @@ flutter:
 
   generate: true
 
+  assets:
+    - assets/images/
+
   fonts:
     - family: SFProDisplay
       fonts:
