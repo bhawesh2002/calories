@@ -1,7 +1,7 @@
 import 'package:calories/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 
-extension AppLoc on State {
+extension AppLocale on State {
   AppLocalizations get appLocale => AppLocalizations.of(context)!;
 }
 
