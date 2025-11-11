@@ -30,7 +30,7 @@ class _CircleGuageState extends State<CircleGuage>
   void initState() {
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
     );
     startCompleteAnimation();
     super.initState();
