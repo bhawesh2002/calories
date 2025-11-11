@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+enum CustomClipVarient { varient1, varient2, varient3 }
+
 class CustomImageClipper extends CustomClipper<Path> {
-  final int _clipPathVarient;
-  CustomImageClipper.v1() : _clipPathVarient = 1;
+  final CustomClipVarient clipVairent;
+  CustomImageClipper({required this.clipVairent});
+  factory CustomImageClipper.v1() =>
+      CustomImageClipper(clipVairent: CustomClipVarient.varient1);
 
   Path _getPathVarient1(Size size) {
     final path = Path();
@@ -33,7 +37,9 @@ class CustomImageClipper extends CustomClipper<Path> {
   }
 
   Path _getPath(Size size) {
-    if (_clipPathVarient == 1) return _getPathVarient1(size);
+    if (clipVairent == CustomClipVarient.varient1) {
+      return _getPathVarient1(size);
+    }
     return Path();
   }
 
