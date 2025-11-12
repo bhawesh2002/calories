@@ -1,5 +1,5 @@
-import 'package:calories/clippers/triple_circle_clipper.dart';
-import 'package:calories/recipe/widgets/circle_guage.dart';
+import 'package:calories/clippers/butterfly_shape_clipper.dart';
+import 'package:calories/clippers/wave_head_clipper.dart';
 import 'package:calories/utils/app_assets.dart';
 import 'package:calories/utils/app_spacing.dart';
 import 'package:calories/utils/extensions.dart';
@@ -16,7 +16,12 @@ class RecipesPage extends StatefulWidget {
 class _RecipesPageState extends State<RecipesPage>
     with SingleTickerProviderStateMixin {
   late final AnimationController _animationController;
-  late final Animation<double> hemisphereDis;
+  late final Animation<double> waveHeight;
+  late final Animation<double> butterflyBodyWidth;
+  late final Animation<double> butterflyBodyHeight;
+  late final Animation<double> butterWingWidth;
+
+  int selectedFilterIndex = 0;
 
   @override
   void initState() {
@@ -25,7 +30,28 @@ class _RecipesPageState extends State<RecipesPage>
       duration: const Duration(seconds: 2),
     );
 
-    hemisphereDis = Tween<double>(begin: 75, end: 0.0).animate(
+    waveHeight = Tween<double>(begin: 0.2, end: 0.8).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOutCubicEmphasized,
+      ),
+    );
+
+    butterflyBodyWidth = Tween<double>(begin: 0.0, end: 0.5).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOutCubicEmphasized,
+      ),
+    );
+
+    butterflyBodyHeight = Tween<double>(begin: 0.0, end: 0.8).animate(
+      CurvedAnimation(
+        parent: _animationController,
+        curve: Curves.easeInOutCubicEmphasized,
+      ),
+    );
+
+    butterWingWidth = Tween<double>(begin: 0.0, end: 0.25).animate(
       CurvedAnimation(
         parent: _animationController,
         curve: Curves.easeInOutCubicEmphasized,
@@ -45,114 +71,146 @@ class _RecipesPageState extends State<RecipesPage>
 
   @override
   Widget build(BuildContext context) {
+    final filterOptions = [
+      appLocale.all,
+      appLocale.breakfast,
+      appLocale.lunch,
+      appLocale.dinner,
+      appLocale.snack,
+    ];
     return AnimatedBuilder(
       animation: _animationController,
       builder: (context, child) => Scaffold(
         body: context.devicePadding(
+          bottom: 0,
           context,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
 
-            children: [
-              IconButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: SFIcon(SFIcons.sf_chevron_left, fontSize: 22),
-              ),
-              AppSpacing.v8,
-              SizedBox(
-                height: context.deviceHt * 0.45,
-                child: ClipPath(
-                  clipper: TripleCircleClipper(
-                    hemisphereDistance: hemisphereDis.value,
-                  ),
-                  child: Image.asset(AppAssets.recipeDetails, fit: BoxFit.fill),
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  icon: SFIcon(SFIcons.sf_chevron_left, fontSize: 22),
                 ),
-              ),
-              AppSpacing.v12,
-
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        appLocale.lazyOatmeal,
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      Text(
-                        appLocale.recipeMeta,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey.shade500,
-                        ),
-                      ),
-                    ],
+                AppSpacing.v8,
+                Text(
+                  appLocale.bestRecipesForYou,
+                  style: TextStyle(
+                    fontSize: 28,
+                    fontWeight: FontWeight.w600,
+                    height: 1.2,
                   ),
-                  SFIcon(SFIcons.sf_heart_fill, color: Colors.black),
-                ],
-              ),
-
-              AppSpacing.v18,
-              Column(
-                spacing: 10,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    appLocale.descriptionTitle,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-                  ),
-                  Text(
-                    appLocale.lazyOatmealDescription,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey.shade800,
-                    ),
-                  ),
-                ],
-              ),
-              AppSpacing.v12,
-
-              Text(
-                appLocale.nutritionalValue,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
-              ),
-              AppSpacing.v20,
-
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    ...List.generate(3, (index) {
-                      final guageData = {
-                        0: ['360 g', 'Fat', 0.6],
-                        1: ['64 g', 'Pro', 0.35],
-                        2: ['80 g', 'Carb', 0.22],
-                      };
-                      return Flexible(
-                        child: CircleGuage(
-                          title: guageData[index]![0].toString(),
-                          subtitle: guageData[index]![1].toString(),
-                          completed:
-                              double.tryParse(
-                                guageData[index]![2].toString(),
-                              ) ??
-                              0.0,
+                ),
+                SizedBox(height: context.deviceHt * 0.1),
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    spacing: 8,
+                    children: List.generate(filterOptions.length, (index) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            selectedFilterIndex = index;
+                          });
+                        },
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            color: index == selectedFilterIndex
+                                ? Colors.black
+                                : Colors.transparent,
+                            borderRadius: BorderRadius.circular(100),
+                            border: index != selectedFilterIndex
+                                ? Border.all(
+                                    color: Colors.grey.shade400,
+                                    width: 1,
+                                  )
+                                : null,
+                          ),
+                          child: Padding(
+                            padding: EdgeInsetsGeometry.symmetric(
+                              vertical: 8,
+                              horizontal: 24,
+                            ),
+                            child: Text(
+                              filterOptions[index],
+                              style: TextStyle(
+                                fontSize: 14,
+                                color: index == selectedFilterIndex
+                                    ? Colors.white
+                                    : Colors.grey.shade500,
+                              ),
+                            ),
+                          ),
                         ),
                       );
                     }),
+                  ),
+                ),
+                AppSpacing.v30,
+                SizedBox(
+                  height: context.deviceHt * 0.315,
+                  width: context.deviceWt,
+                  child: ClipPath(
+                    clipper: ButterflyShapeClipper(
+                      butterflyBodyHeight: butterflyBodyHeight.value,
+                      butterflyBodyWidth: butterflyBodyWidth.value,
+                      butterWingWidth: butterWingWidth.value,
+                    ),
+                    child: Image.asset(
+                      AppAssets.recipeDetails,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                AppSpacing.v12,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          appLocale.lazyOatmeal,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        Text(
+                          appLocale.recipeMeta,
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w400,
+                            color: Colors.grey.shade500,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SFIcon(
+                      SFIcons.sf_heart_fill,
+                      color: Colors.grey.shade500,
+                      fontSize: 20,
+                    ),
                   ],
                 ),
-              ),
-              AppSpacing.v18,
-            ],
+                AppSpacing.v20,
+                SizedBox(
+                  height: context.deviceHt * 0.3,
+                  child: ClipPath(
+                    clipper: WaveHeadClipper(waveHeight: waveHeight.value),
+                    child: Image.asset(
+                      AppAssets.recipeDetails,
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+
+                AppSpacing.v22,
+              ],
+            ),
           ),
         ),
       ),
