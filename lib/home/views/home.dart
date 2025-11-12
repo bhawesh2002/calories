@@ -1,4 +1,5 @@
 import 'package:calories/home/widgets/bar_chart.dart';
+import 'package:calories/recipe/views/recipe_details_page.dart';
 import 'package:calories/recipe/views/recipes_page.dart';
 import 'package:calories/utils/app_assets.dart';
 import 'package:calories/utils/app_spacing.dart';
@@ -96,7 +97,29 @@ class _HomeState extends State<Home> {
                     icon: SFIcon(SFIcons.sf_person, fontSize: 20),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      final page = PageRouteBuilder(
+                        pageBuilder: (context, _, _) => RecipeDetailsPage(),
+                        transitionsBuilder:
+                            (context, animation, secondaryAnimation, child) {
+                              final positionAnim =
+                                  Tween<Offset>(
+                                    begin: Offset(-1, 0),
+                                    end: Offset.zero,
+                                  ).animate(
+                                    CurvedAnimation(
+                                      parent: animation,
+                                      curve: Curves.ease,
+                                    ),
+                                  );
+                              return SlideTransition(
+                                position: positionAnim,
+                                child: RecipeDetailsPage(),
+                              );
+                            },
+                      );
+                      Navigator.of(context).push(page);
+                    },
                     icon: SFIcon(SFIcons.sf_fork_knife, fontSize: 20),
                   ),
                   IconButton(
