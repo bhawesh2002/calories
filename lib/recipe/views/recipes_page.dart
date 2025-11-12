@@ -131,21 +131,20 @@ class _RecipesPageState extends State<RecipesPage>
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     ...List.generate(3, (index) {
-                      double completionValue() {
-                        if (index == 0) {
-                          return 0.6;
-                        } else if (index == 1) {
-                          return 0.35;
-                        } else {
-                          return 0.22;
-                        }
-                      }
-
+                      final guageData = {
+                        0: ['360 g', 'Fat', 0.6],
+                        1: ['64 g', 'Pro', 0.35],
+                        2: ['80 g', 'Carb', 0.22],
+                      };
                       return Flexible(
                         child: CircleGuage(
-                          completed: completionValue(),
-                          title: "380 g",
-                          subtitle: "Fat",
+                          title: guageData[index]![0].toString(),
+                          subtitle: guageData[index]![1].toString(),
+                          completed:
+                              double.tryParse(
+                                guageData[index]![2].toString(),
+                              ) ??
+                              0.0,
                         ),
                       );
                     }),
