@@ -132,7 +132,7 @@ abstract class AppLocalizations {
   /// Title text for the recipe suggestion section.
   ///
   /// In en, this message translates to:
-  /// **'Best recipes for you'**
+  /// **'Best recipes\nfor you'**
   String get bestRecipesForYou;
 
   /// Filter option to show all recipes.
