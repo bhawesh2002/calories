@@ -27,7 +27,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get carbohydrates => 'Carb';
 
   @override
-  String get bestRecipesForYou => 'Best recipes for you';
+  String get bestRecipesForYou => 'Best recipes\nfor you';
 
   @override
   String get all => 'All';

@@ -23,7 +23,7 @@
     "@carbohydrates": {
         "description": "Label for carbohydrate nutritional value."
     },
-    "bestRecipesForYou": "Best recipes for you",
+    "bestRecipesForYou": "Best recipes\nfor you",
     "@bestRecipesForYou": {
         "description": "Title text for the recipe suggestion section."
     },
