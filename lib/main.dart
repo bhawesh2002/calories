@@ -2,6 +2,7 @@ import 'package:calories/l10n/app_localizations.dart';
 import 'package:calories/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +15,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(fontFamily: 'SFProDisplay'),
+      theme: ThemeData(fontFamily: GoogleFonts.inter().fontFamily),
       locale: Locale('en'),
       supportedLocales: AppLocalizations.supportedLocales,
       localizationsDelegates: [
