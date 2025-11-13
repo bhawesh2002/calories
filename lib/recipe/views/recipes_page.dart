@@ -104,7 +104,7 @@ class _RecipesPageState extends State<RecipesPage>
                     height: 1.2,
                   ),
                 ),
-                SizedBox(height: context.deviceHt * 0.1),
+                SizedBox(height: context.deviceHt * 0.08),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -149,7 +149,7 @@ class _RecipesPageState extends State<RecipesPage>
                     }),
                   ),
                 ),
-                AppSpacing.v30,
+                AppSpacing.v26,
                 SizedBox(
                   height: context.deviceHt * 0.315,
                   width: context.deviceWt,
@@ -160,7 +160,7 @@ class _RecipesPageState extends State<RecipesPage>
                       butterWingWidth: butterWingWidth.value,
                     ),
                     child: Image.asset(
-                      AppAssets.recipeDetails,
+                      AppAssets.recipeSuggestion1,
                       fit: BoxFit.fill,
                     ),
                   ),
@@ -202,7 +202,7 @@ class _RecipesPageState extends State<RecipesPage>
                   child: ClipPath(
                     clipper: WaveHeadClipper(waveHeight: waveHeight.value),
                     child: Image.asset(
-                      AppAssets.recipeDetails,
+                      AppAssets.recipeSuggestion2,
                       fit: BoxFit.fill,
                     ),
                   ),
