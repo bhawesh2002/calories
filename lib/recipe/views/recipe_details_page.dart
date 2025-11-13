@@ -2,6 +2,7 @@ import 'package:calories/clippers/triple_circle_clipper.dart';
 import 'package:calories/recipe/widgets/circle_guage.dart';
 import 'package:calories/utils/app_assets.dart';
 import 'package:calories/utils/app_spacing.dart';
+import 'package:calories/utils/app_typography.dart';
 import 'package:calories/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sficon/flutter_sficon.dart';
@@ -80,18 +81,11 @@ class _RecipeDetailsPageState extends State<RecipeDetailsPage>
                     children: [
                       Text(
                         appLocale.lazyOatmeal,
-                        style: TextStyle(
-                          fontSize: 32,
-                          fontWeight: FontWeight.w600,
-                        ),
+                        style: AppTypography().textXLSemiBold,
                       ),
                       Text(
                         appLocale.recipeMeta,
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.w400,
-                          color: Colors.grey.shade500,
-                        ),
+                        style: AppTypography().textXSmGreyed,
                       ),
                     ],
                   ),
@@ -106,14 +100,12 @@ class _RecipeDetailsPageState extends State<RecipeDetailsPage>
                 children: [
                   Text(
                     appLocale.descriptionTitle,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                    style: AppTypography().textMd20Medium,
                   ),
                   Text(
                     appLocale.lazyOatmealDescription,
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.grey.shade800,
+                    style: AppTypography().textSmGreyed.copyWith(
+                      letterSpacing: -0.3,
                     ),
                   ),
                 ],

@@ -3,6 +3,7 @@ import 'package:calories/recipe/views/recipe_details_page.dart';
 import 'package:calories/recipe/views/recipes_page.dart';
 import 'package:calories/utils/app_assets.dart';
 import 'package:calories/utils/app_spacing.dart';
+import 'package:calories/utils/app_typography.dart';
 import 'package:calories/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sficon/flutter_sficon.dart';
@@ -23,14 +24,7 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              appLocale.greeting,
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey.shade600,
-              ),
-            ),
+            Text(appLocale.greeting, style: AppTypography().textSmGreyed),
             AppSpacing.v10,
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,11 +32,7 @@ class _HomeState extends State<Home> {
               children: [
                 Text(
                   appLocale.startHealthyDay,
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black,
-                  ),
+                  style: AppTypography().textXLSemiBold,
                 ),
                 CircleAvatar(
                   radius: context.deviceWt * 0.055,
@@ -59,18 +49,12 @@ class _HomeState extends State<Home> {
                 RichText(
                   text: TextSpan(
                     text: "350",
-                    style: TextStyle(
-                      fontSize: context.deviceWt * 0.165,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
+                    style: AppTypography().textXXLSemiBold,
                     children: [
                       TextSpan(
                         text: " /1045",
-                        style: TextStyle(
-                          fontSize: context.deviceWt * 0.05,
-                          fontWeight: FontWeight.w300,
-                          color: Colors.grey.shade600,
+                        style: AppTypography().textSmGreyed.copyWith(
+                          letterSpacing: -0.2,
                         ),
                       ),
                     ],
@@ -78,12 +62,7 @@ class _HomeState extends State<Home> {
                 ),
                 Text(
                   appLocale.kcalLeft,
-                  style: TextStyle(
-                    fontSize: context.deviceWt * 0.05,
-                    fontWeight: FontWeight.w600,
-                    height: 2.4,
-                    color: Colors.black,
-                  ),
+                  style: AppTypography().textMdMedium.copyWith(height: 2.4),
                 ),
               ],
             ),

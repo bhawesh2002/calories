@@ -1,4 +1,5 @@
 import 'package:calories/recipe/widgets/circle_guage_painter.dart';
+import 'package:calories/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CircleGuage extends StatefulWidget {
@@ -83,13 +84,14 @@ class _CircleGuageState extends State<CircleGuage>
                         fontWeight: FontWeight.w600,
                       ),
                     ),
+
                     Text(
                       widget.subtitle,
                       style: TextStyle(
-                        fontSize: radius * 0.2,
-                        height: 0.0,
+                        fontSize: radius * 0.22,
+                        height: 1.8,
                         fontWeight: FontWeight.w400,
-                        color: Colors.grey.shade500,
+                        color: AppColors.grey,
                       ),
                     ),
                   ],

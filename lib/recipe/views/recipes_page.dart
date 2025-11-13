@@ -1,7 +1,9 @@
 import 'package:calories/clippers/butterfly_shape_clipper.dart';
 import 'package:calories/clippers/wave_head_clipper.dart';
 import 'package:calories/utils/app_assets.dart';
+import 'package:calories/utils/app_colors.dart';
 import 'package:calories/utils/app_spacing.dart';
+import 'package:calories/utils/app_typography.dart';
 import 'package:calories/utils/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_sficon/flutter_sficon.dart';
@@ -98,13 +100,9 @@ class _RecipesPageState extends State<RecipesPage>
                 AppSpacing.v8,
                 Text(
                   appLocale.bestRecipesForYou,
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.w600,
-                    height: 1.2,
-                  ),
+                  style: AppTypography().textXLSemiBold.copyWith(height: 1.3),
                 ),
-                SizedBox(height: context.deviceHt * 0.08),
+                SizedBox(height: context.deviceHt * 0.075),
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -138,9 +136,10 @@ class _RecipesPageState extends State<RecipesPage>
                               filterOptions[index],
                               style: TextStyle(
                                 fontSize: 14,
+                                letterSpacing: -0.2,
                                 color: index == selectedFilterIndex
-                                    ? Colors.white
-                                    : Colors.grey.shade500,
+                                    ? AppColors.appWhite
+                                    : AppColors.grey,
                               ),
                             ),
                           ),
@@ -174,17 +173,15 @@ class _RecipesPageState extends State<RecipesPage>
                       children: [
                         Text(
                           appLocale.lazyOatmeal,
-                          style: TextStyle(
-                            fontSize: 16,
+                          style: AppTypography().textSmGreyed.copyWith(
+                            color: AppColors.appBlack,
                             fontWeight: FontWeight.w600,
                           ),
                         ),
                         Text(
                           appLocale.recipeMeta,
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.grey.shade500,
+                          style: AppTypography().textXSmGreyed.copyWith(
+                            letterSpacing: -0.3,
                           ),
                         ),
                       ],

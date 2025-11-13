@@ -32,7 +32,7 @@ class BarChart extends StatelessWidget {
                   height: maxHt * 0.70,
                   child: BarCandle(
                     title: "34",
-                    subtitle: " /69 g Fat",
+                    subtitle: " /69 g Pro",
                     completed: 0.48,
                     color: Color(0xffFF7617),
                     animate: true,
@@ -44,7 +44,7 @@ class BarChart extends StatelessWidget {
                   height: maxHt * 0.95,
                   child: BarCandle(
                     title: "76",
-                    subtitle: " /120 g Fat",
+                    subtitle: " /120 g Carb",
                     completed: 0.8,
                     color: Color(0xffFFA7E7),
                     animate: true,

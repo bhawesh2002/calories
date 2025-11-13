@@ -1,5 +1,6 @@
 import 'package:calories/home/widgets/bar_candle_painter.dart';
 import 'package:calories/utils/app_spacing.dart';
+import 'package:calories/utils/app_typography.dart';
 import 'package:flutter/material.dart';
 
 class BarCandle extends StatefulWidget {
@@ -106,19 +107,11 @@ class _BarCandleState extends State<BarCandle>
               child: RichText(
                 text: TextSpan(
                   text: widget.title,
-                  style: TextStyle(
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.black,
-                  ),
+                  style: AppTypography().textMdMedium,
                   children: [
                     TextSpan(
                       text: widget.subtitle,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.grey.shade600,
-                      ),
+                      style: AppTypography().textXSmGreyed,
                     ),
                   ],
                 ),
