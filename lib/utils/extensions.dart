@@ -8,6 +8,7 @@ extension AppLocale on State {
 extension DeviceDimensions on BuildContext {
   double get deviceWt => MediaQuery.sizeOf(this).width;
   double get deviceHt => MediaQuery.sizeOf(this).height;
+  double get shortSide => MediaQuery.sizeOf(this).shortestSide;
   double get viewPaddingBottom => MediaQuery.viewPaddingOf(this).bottom;
   double get viewPaddingTop => MediaQuery.viewPaddingOf(this).top;
   double get viewInsetsBottom => MediaQuery.viewInsetsOf(this).bottom;
