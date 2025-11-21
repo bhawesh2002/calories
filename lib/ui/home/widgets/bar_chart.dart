@@ -1,4 +1,4 @@
-import 'package:calories/home/widgets/bar_candle.dart';
+import 'package:calories/ui/home/widgets/bar_candle.dart';
 import 'package:flutter/material.dart';
 
 class BarChart extends StatelessWidget {

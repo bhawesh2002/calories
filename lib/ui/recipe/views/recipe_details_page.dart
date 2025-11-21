@@ -1,5 +1,5 @@
-import 'package:calories/clippers/triple_circle_clipper.dart';
-import 'package:calories/recipe/widgets/circle_guage.dart';
+import 'package:calories/ui/clippers/triple_circle_clipper.dart';
+import 'package:calories/ui/recipe/widgets/circle_guage.dart';
 import 'package:calories/utils/app_assets.dart';
 import 'package:calories/utils/app_spacing.dart';
 import 'package:calories/utils/app_typography.dart';

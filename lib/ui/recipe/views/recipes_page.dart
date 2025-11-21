@@ -1,5 +1,5 @@
-import 'package:calories/clippers/butterfly_shape_clipper.dart';
-import 'package:calories/clippers/wave_head_clipper.dart';
+import 'package:calories/ui/clippers/butterfly_shape_clipper.dart';
+import 'package:calories/ui/clippers/wave_head_clipper.dart';
 import 'package:calories/utils/app_assets.dart';
 import 'package:calories/utils/app_colors.dart';
 import 'package:calories/utils/app_spacing.dart';

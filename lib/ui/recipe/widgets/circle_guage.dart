@@ -1,4 +1,4 @@
-import 'package:calories/recipe/widgets/circle_guage_painter.dart';
+import 'package:calories/ui/recipe/widgets/circle_guage_painter.dart';
 import 'package:calories/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 

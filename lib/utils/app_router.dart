@@ -1,7 +1,7 @@
-import 'package:calories/home/views/home.dart';
-import 'package:calories/recipe/views/recipe_details_page.dart';
-import 'package:calories/recipe/views/recipes_page.dart';
-import 'package:calories/splash/views/splash_screen.dart';
+import 'package:calories/ui/home/views/home.dart';
+import 'package:calories/ui/recipe/views/recipe_details_page.dart';
+import 'package:calories/ui/recipe/views/recipes_page.dart';
+import 'package:calories/ui/splash/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {

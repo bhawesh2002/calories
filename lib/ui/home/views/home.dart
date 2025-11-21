@@ -1,6 +1,6 @@
-import 'package:calories/home/widgets/bar_chart.dart';
-import 'package:calories/recipe/views/recipe_details_page.dart';
-import 'package:calories/recipe/views/recipes_page.dart';
+import 'package:calories/ui/home/widgets/bar_chart.dart';
+import 'package:calories/ui/recipe/views/recipe_details_page.dart';
+import 'package:calories/ui/recipe/views/recipes_page.dart';
 import 'package:calories/utils/app_assets.dart';
 import 'package:calories/utils/app_spacing.dart';
 import 'package:calories/utils/app_typography.dart';

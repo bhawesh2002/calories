@@ -1,4 +1,4 @@
-import 'package:calories/home/widgets/bar_candle_painter.dart';
+import 'package:calories/ui/home/widgets/bar_candle_painter.dart';
 import 'package:calories/utils/app_spacing.dart';
 import 'package:calories/utils/app_typography.dart';
 import 'package:flutter/material.dart';
