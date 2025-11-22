@@ -1,10 +1,12 @@
+import 'package:calories/data/services/storage_service.dart';
 import 'package:calories/l10n/app_localizations.dart';
 import 'package:calories/utils/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await StorageService.setup();
   runApp(const MainApp());
 }
 
