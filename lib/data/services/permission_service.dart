@@ -1,21 +1,35 @@
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionService {
-  Future<bool?> getAccessToSensor() async {
-    final res = await Permission.sensorsAlways.request();
-    switch (res) {
-      case PermissionStatus.denied:
-        return false;
-      case PermissionStatus.granted:
-        return true;
-      case PermissionStatus.restricted:
-        return false;
-      case PermissionStatus.limited:
-        return true;
-      case PermissionStatus.permanentlyDenied:
-        return false;
-      case PermissionStatus.provisional:
-        return true;
+  Future<PermissionStatus> getAccessToSensor() async {
+    if (await Permission.sensorsAlways.isGranted) {
+      return PermissionStatus.granted;
     }
+    final res = await Permission.sensorsAlways.request();
+    return res;
+  }
+
+  Future<PermissionStatus> getAccessToLocation() async {
+    if (await Permission.location.isGranted) {
+      return PermissionStatus.granted;
+    }
+    final res = await Permission.sensorsAlways.request();
+    return res;
+  }
+
+  Future<PermissionStatus> getAccessToCamera() async {
+    if (await Permission.camera.isGranted) {
+      return PermissionStatus.granted;
+    }
+    final res = await Permission.sensorsAlways.request();
+    return res;
+  }
+
+  Future<PermissionStatus> getAccessToStorage() async {
+    if (await Permission.storage.isGranted) {
+      return PermissionStatus.granted;
+    }
+    final res = await Permission.sensorsAlways.request();
+    return res;
   }
 }
