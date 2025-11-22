@@ -32,6 +32,7 @@ class StorageService {
     if (instance._setupComplete) return;
     await instance._setupSharedPrefs();
     await instance._setupHive();
+    await instance._configurePermissionStorageBox();
     instance._setupComplete = true;
   }
 
@@ -55,5 +56,18 @@ class StorageService {
 
   LazyBox<T> getLazyBox<T>(StorageBoxes box) {
     return Hive.lazyBox<T>(box.boxName);
+  }
+
+  Future<void> _configurePermissionStorageBox() async {
+    final box = getBox<PermissionEntry>(StorageBoxes.permission);
+
+    for (var type in PermissionType.values) {
+      if (!box.containsKey(type.name)) {
+        box.put(
+          type.name,
+          PermissionEntry(type: type, level: PermissionLevel.denied),
+        );
+      }
+    }
   }
 }
