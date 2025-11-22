@@ -27,6 +27,8 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   hive_ce_generator: ^1.8.1
   build_runner: ^2.10.4
+  freezed: ^3.2.3
+  freezed_lint: ^0.0.12
 
 flutter:
   uses-material-design: true
