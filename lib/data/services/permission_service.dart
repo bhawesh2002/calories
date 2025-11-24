@@ -2,10 +2,10 @@ import 'package:permission_handler/permission_handler.dart';
 
 class PermissionService {
   Future<PermissionStatus> getAccessToSensor() async {
-    if (await Permission.sensorsAlways.isGranted) {
+    if (await Permission.sensors.isGranted) {
       return PermissionStatus.granted;
     }
-    final res = await Permission.sensorsAlways.request();
+    final res = await Permission.sensors.request();
     return res;
   }
 
@@ -13,7 +13,7 @@ class PermissionService {
     if (await Permission.location.isGranted) {
       return PermissionStatus.granted;
     }
-    final res = await Permission.sensorsAlways.request();
+    final res = await Permission.location.request();
     return res;
   }
 
@@ -21,15 +21,15 @@ class PermissionService {
     if (await Permission.camera.isGranted) {
       return PermissionStatus.granted;
     }
-    final res = await Permission.sensorsAlways.request();
+    final res = await Permission.camera.request();
     return res;
   }
 
-  Future<PermissionStatus> getAccessToStorage() async {
+  Future<PermissionStatus> getAccessToPhotos() async {
     if (await Permission.storage.isGranted) {
       return PermissionStatus.granted;
     }
-    final res = await Permission.sensorsAlways.request();
+    final res = await Permission.photos.request();
     return res;
   }
 }
