@@ -1,6 +1,7 @@
 import 'package:calories/data/models/permission_entry.dart';
 import 'package:calories/hive/hive_registrar.g.dart';
 import 'package:hive_ce_flutter/hive_flutter.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 enum StorageBoxes {
@@ -14,7 +15,7 @@ enum StorageBoxes {
   const StorageBoxes(this.boxName, this.description);
 
   static List<String> getBoxNames() =>
-      StorageBoxes.values.map((e) => e.toString()).toList();
+      StorageBoxes.values.map((e) => e.boxName).toList();
 
   @override
   toString() => boxName;
@@ -43,11 +44,14 @@ class StorageService {
 
   Future<void> _setupHive() async {
     if (_setupComplete) return;
-    await Hive.initFlutter();
+    final document = await getApplicationDocumentsDirectory();
+
+    await Hive.initFlutter(document.path);
+    Hive.registerAdapters();
+
     for (var box in StorageBoxes.getBoxNames()) {
       await Hive.openBox<PermissionEntry>(box);
     }
-    Hive.registerAdapters();
   }
 
   Box<T> getBox<T>(StorageBoxes box) {
