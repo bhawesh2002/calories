@@ -59,4 +59,7 @@ class PermissionEntry {
 
     return other._type == _type && other._level == _level;
   }
+
+  @override
+  String toString() => 'PermissionEntry(_type: $_type, _level: $_level)';
 }
