@@ -15,8 +15,7 @@ class _SplashScreenState extends ConsumerState<SplashScreen> {
   void didChangeDependencies() {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await ref.read(permissionRepoProvider).accquireDeniedPermissions();
-
-      Future.delayed((const Duration(seconds: 1)), () {
+      setState(() {
         if (mounted) Navigator.of(context).pushNamed(AppRoutes.home);
       });
     });
