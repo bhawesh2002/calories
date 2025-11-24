@@ -1,5 +1,6 @@
 import 'package:calories/data/models/permission_entry.dart';
 import 'package:calories/data/services/permission_service.dart';
+import 'package:flutter/foundation.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class PermissionRepository {
@@ -12,7 +13,7 @@ class PermissionRepository {
   Future<void> initialize() async {
     if (isInitialized) return;
     await accquireDeniedPermissions();
-    isInitialized = false;
+    isInitialized = true;
   }
 
   List<PermissionEntry> get getLimitedPermissions =>
@@ -34,32 +35,36 @@ class PermissionRepository {
   }
 
   Future<void> accquirePermission(PermissionEntry perm) async {
-    late final PermissionStatus status;
-    switch (perm.type) {
-      case PermissionType.sensor:
-        status = await _permissionService.getAccessToSensor();
-      case PermissionType.location:
-        status = await _permissionService.getAccessToLocation();
-      case PermissionType.camera:
-        status = await _permissionService.getAccessToCamera();
-      case PermissionType.storage:
-        status = await _permissionService.getAccessToStorage();
-    }
+    try {
+      late final PermissionStatus status;
+      switch (perm.type) {
+        case PermissionType.sensor:
+          status = await _permissionService.getAccessToSensor();
+        case PermissionType.location:
+          status = await _permissionService.getAccessToLocation();
+        case PermissionType.camera:
+          status = await _permissionService.getAccessToCamera();
+        case PermissionType.storage:
+          status = await _permissionService.getAccessToPhotos();
+      }
 
-    late final PermissionEntry updatedPerm;
-    switch (status) {
-      case PermissionStatus.denied ||
-          PermissionStatus.restricted ||
-          PermissionStatus.permanentlyDenied:
-        updatedPerm = perm.copyWith(level: PermissionLevel.denied);
-      case PermissionStatus.granted:
-        updatedPerm = perm.copyWith(level: PermissionLevel.full);
-      case PermissionStatus.limited || PermissionStatus.provisional:
-        updatedPerm = perm.copyWith(level: PermissionLevel.limited);
-    }
+      late final PermissionEntry updatedPerm;
+      switch (status) {
+        case PermissionStatus.denied ||
+            PermissionStatus.restricted ||
+            PermissionStatus.permanentlyDenied:
+          updatedPerm = perm.copyWith(level: PermissionLevel.denied);
+        case PermissionStatus.granted:
+          updatedPerm = perm.copyWith(level: PermissionLevel.full);
+        case PermissionStatus.limited || PermissionStatus.provisional:
+          updatedPerm = perm.copyWith(level: PermissionLevel.limited);
+      }
 
-    if (updatedPerm != perm) {
-      await perm.storePermission();
+      if (updatedPerm != perm) {
+        await updatedPerm.storePermission();
+      }
+    } catch (e) {
+      debugPrint("Error in accquiring permission: $e");
     }
   }
 }
