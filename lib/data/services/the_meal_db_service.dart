@@ -340,7 +340,7 @@ class TheMealDbService {
     final uri = Uri(
       scheme: 'https',
       host: "themealdb.com",
-      path: "api/json/$apiVersion/$_apiKey",
+      path: "api/json/$apiVersion/$_apiKey/${type.url}.php",
       pathSegments: pathSegments,
       queryParameters: queryParams?.map((k, v) => MapEntry(k.toString(), v)),
     );
