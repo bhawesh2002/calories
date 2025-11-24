@@ -29,6 +29,8 @@ enum MethodType {
 
   bool isParamSupported(AllowedQueryParams queryParam) =>
       allowedQueryParams.contains(queryParam);
+  @override
+  toString() => url;
 }
 
 enum SupportedApiVersion {
@@ -47,11 +49,26 @@ enum SupportedImageEndpoint {
 
   const SupportedImageEndpoint(this.url);
   final String url;
+  @override
+  toString() => url;
 }
 
-enum SupportedImageTypes { jpg, png }
+enum SupportedImageTypes {
+  jpg,
+  png;
 
-enum ImagePreviewSize { small, medium, large }
+  @override
+  toString() => name;
+}
+
+enum ImagePreviewSize {
+  small,
+  medium,
+  large;
+
+  @override
+  toString() => name;
+}
 
 enum AllowedQueryParams {
   search("s"),
@@ -63,6 +80,9 @@ enum AllowedQueryParams {
 
   const AllowedQueryParams(this.queryString);
   final String queryString;
+
+  @override
+  toString() => name;
 }
 
 class TheMealDbService {
@@ -357,9 +377,11 @@ class TheMealDbService {
       late final String path;
       switch (endpoint) {
         case SupportedImageEndpoint.mealImage:
-          path = "${endpoint.url}/$imageIdentifier.$imageType/$size";
+          path =
+              "${endpoint.url}/$imageIdentifier.${imageType.name}/${size.name}";
         case SupportedImageEndpoint.ingredientImage:
-          path = "${endpoint.url}/$imageIdentifier-$size.$imageType";
+          path =
+              "${endpoint.url}/$imageIdentifier-${size.name}.${imageType.name}";
       }
       return path;
     }
