@@ -17,9 +17,7 @@ enum MethodType {
     AllowedQueryParams.area,
     AllowedQueryParams.ingredient,
   ]),
-  latest("latest", [], requiresPremium: true),
-  mealImage("images/media/meals", []),
-  ingredientImage("images/ingredients", []);
+  latest("latest", [], requiresPremium: true);
 
   const MethodType(
     this.url,
@@ -42,6 +40,16 @@ enum SupportedApiVersion {
   @override
   toString() => version;
 }
+
+enum SupportedImageEndpoint {
+  mealImage("images/media/meals"),
+  ingredientImage("images/ingredients");
+
+  const SupportedImageEndpoint(this.url);
+  final String url;
+}
+
+enum SupportedImageTypes { jpg, png }
 
 enum ImagePreviewSize { small, medium, large }
 
@@ -263,10 +271,12 @@ class TheMealDbService {
     ImagePreviewSize size,
   ) async {
     try {
-      final res = makeRequest(
-        MethodType.mealImage,
-        pathSegments: [imageIdentifier, size.name],
+      final url = _constructImageUrl(
+        imageIdentifier,
+        SupportedImageEndpoint.mealImage,
+        SupportedImageTypes.jpg,
       );
+      final res = http.get(url);
       return res;
     } catch (e, stack) {
       developer.log("Error in getMealThumbnail", error: e, stackTrace: stack);
@@ -279,10 +289,12 @@ class TheMealDbService {
     ImagePreviewSize size,
   ) async {
     try {
-      final res = makeRequest(
-        MethodType.ingredientImage,
-        pathSegments: ["$imageIdentifier-$size"],
+      final url = _constructImageUrl(
+        imageIdentifier,
+        SupportedImageEndpoint.ingredientImage,
+        SupportedImageTypes.png,
       );
+      final res = http.get(url);
       return res;
     } catch (e, stack) {
       developer.log(
@@ -334,6 +346,27 @@ class TheMealDbService {
     );
     return uri;
   }
+
+  Uri _constructImageUrl(
+    String imageIdentifier,
+    SupportedImageEndpoint endpoint,
+    SupportedImageTypes imageType, {
+    ImagePreviewSize size = ImagePreviewSize.medium,
+  }) {
+    String getPath() {
+      late final String path;
+      switch (endpoint) {
+        case SupportedImageEndpoint.mealImage:
+          path = "${endpoint.url}/$imageIdentifier.$imageType/$size";
+        case SupportedImageEndpoint.ingredientImage:
+          path = "${endpoint.url}/$imageIdentifier-$size.$imageType";
+      }
+      return path;
+    }
+
+    final uri = Uri(scheme: 'https', host: "themealdb.com", path: getPath());
+    return uri;
+  }
 }
 
 class UnsupportedQueryParam implements Exception {
@@ -342,6 +375,6 @@ class UnsupportedQueryParam implements Exception {
   UnsupportedQueryParam(this.type, this.param);
   @override
   String toString() {
-    return "The method: ${type.name} does not support query param: ${type.name}";
+    return "The method: ${type.name} does not support query param: ${param.name}";
   }
 }
