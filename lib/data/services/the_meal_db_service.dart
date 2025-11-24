@@ -17,15 +17,17 @@ enum MethodType {
     AllowedQueryParams.area,
     AllowedQueryParams.ingredient,
   ]),
-  latest("latest", [], requiresPremium: true);
+  latest("latest", [], requiresPremium: true),
+  mealImage("images/media/meals", []),
+  ingredientImage("images/ingredients", []);
 
   const MethodType(
-    this.name,
+    this.url,
     this.allowedQueryParams, {
     bool requiresPremium = false,
   });
   final List<AllowedQueryParams> allowedQueryParams;
-  final String name;
+  final String url;
 
   bool isParamSupported(AllowedQueryParams queryParam) =>
       allowedQueryParams.contains(queryParam);
@@ -40,6 +42,8 @@ enum SupportedApiVersion {
   @override
   toString() => version;
 }
+
+enum ImagePreviewSize { small, medium, large }
 
 enum AllowedQueryParams {
   search("s"),
@@ -254,12 +258,53 @@ class TheMealDbService {
     }
   }
 
+  Future<http.Response> getMealThumbnail(
+    String imageIdentifier,
+    ImagePreviewSize size,
+  ) async {
+    try {
+      final res = makeRequest(
+        MethodType.mealImage,
+        pathSegments: [imageIdentifier, size.name],
+      );
+      return res;
+    } catch (e, stack) {
+      developer.log("Error in getMealThumbnail", error: e, stackTrace: stack);
+      rethrow;
+    }
+  }
+
+  Future<http.Response> getIngedientThumbnail(
+    String imageIdentifier,
+    ImagePreviewSize size,
+  ) async {
+    try {
+      final res = makeRequest(
+        MethodType.ingredientImage,
+        pathSegments: ["$imageIdentifier-$size"],
+      );
+      return res;
+    } catch (e, stack) {
+      developer.log(
+        "Error in getIngedientThumbnail",
+        error: e,
+        stackTrace: stack,
+      );
+      rethrow;
+    }
+  }
+
   Future<http.Response> makeRequest(
     MethodType type, {
     Map<AllowedQueryParams, dynamic>? queryParams,
+    List<String>? pathSegments,
   }) async {
     try {
-      final uri = _constructUrl(MethodType.search, queryParams: queryParams);
+      final uri = _constructUrl(
+        MethodType.search,
+        queryParams: queryParams,
+        pathSegments: pathSegments,
+      );
       final response = await http.get(uri);
       return response;
     } catch (e, stack) {
@@ -271,6 +316,7 @@ class TheMealDbService {
   Uri _constructUrl(
     MethodType type, {
     Map<AllowedQueryParams, dynamic>? queryParams,
+    List<String>? pathSegments,
   }) {
     if (queryParams != null) {
       for (var param in queryParams.keys.toList()) {
@@ -283,6 +329,7 @@ class TheMealDbService {
       scheme: 'https',
       host: "themealdb.com",
       path: "api/json/$apiVersion/$_apiKey",
+      pathSegments: pathSegments,
       queryParameters: queryParams?.map((k, v) => MapEntry(k.toString(), v)),
     );
     return uri;
