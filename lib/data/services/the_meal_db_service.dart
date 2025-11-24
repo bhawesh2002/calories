@@ -276,7 +276,7 @@ class TheMealDbService {
         SupportedImageEndpoint.mealImage,
         SupportedImageTypes.jpg,
       );
-      final res = http.get(url);
+      final res = await http.get(url);
       return res;
     } catch (e, stack) {
       developer.log("Error in getMealThumbnail", error: e, stackTrace: stack);
@@ -294,7 +294,7 @@ class TheMealDbService {
         SupportedImageEndpoint.ingredientImage,
         SupportedImageTypes.png,
       );
-      final res = http.get(url);
+      final res = await http.get(url);
       return res;
     } catch (e, stack) {
       developer.log(
