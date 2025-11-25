@@ -44,8 +44,10 @@ class PermissionRepository {
           status = await _permissionService.getAccessToLocation();
         case PermissionType.camera:
           status = await _permissionService.getAccessToCamera();
-        case PermissionType.storage:
+        case PermissionType.photos:
           status = await _permissionService.getAccessToPhotos();
+        case PermissionType.videos:
+          status = await _permissionService.getAccessToVideos();
       }
 
       late final PermissionEntry updatedPerm;
