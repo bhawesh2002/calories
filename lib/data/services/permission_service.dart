@@ -26,10 +26,18 @@ class PermissionService {
   }
 
   Future<PermissionStatus> getAccessToPhotos() async {
-    if (await Permission.storage.isGranted) {
+    if (await Permission.photos.isGranted) {
       return PermissionStatus.granted;
     }
     final res = await Permission.photos.request();
+    return res;
+  }
+
+  Future<PermissionStatus> getAccessToVideos() async {
+    if (await Permission.videos.isGranted) {
+      return PermissionStatus.granted;
+    }
+    final res = await Permission.videos.request();
     return res;
   }
 }
