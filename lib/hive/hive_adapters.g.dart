@@ -97,8 +97,10 @@ class PermissionTypeAdapter extends TypeAdapter<PermissionType> {
         return PermissionType.camera;
       case 2:
         return PermissionType.location;
-      case 3:
-        return PermissionType.storage;
+      case 4:
+        return PermissionType.photos;
+      case 5:
+        return PermissionType.videos;
       default:
         return PermissionType.sensor;
     }
@@ -113,8 +115,10 @@ class PermissionTypeAdapter extends TypeAdapter<PermissionType> {
         writer.writeByte(1);
       case PermissionType.location:
         writer.writeByte(2);
-      case PermissionType.storage:
-        writer.writeByte(3);
+      case PermissionType.photos:
+        writer.writeByte(4);
+      case PermissionType.videos:
+        writer.writeByte(5);
     }
   }
 

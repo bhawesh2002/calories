@@ -23,7 +23,7 @@ types:
         index: 2
   PermissionType:
     typeId: 2
-    nextIndex: 4
+    nextIndex: 6
     fields:
       sensor:
         index: 0
@@ -31,5 +31,7 @@ types:
         index: 1
       location:
         index: 2
-      storage:
-        index: 3
+      photos:
+        index: 4
+      videos:
+        index: 5

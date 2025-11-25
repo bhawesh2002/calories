@@ -11,7 +11,7 @@ enum PermissionLevel {
   bool get isDenied => this == denied;
 }
 
-enum PermissionType { sensor, camera, location, storage }
+enum PermissionType { sensor, camera, location, photos, videos }
 
 class PermissionEntry {
   final PermissionType _type;
