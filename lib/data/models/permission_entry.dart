@@ -11,7 +11,24 @@ enum PermissionLevel {
   bool get isDenied => this == denied;
 }
 
-enum PermissionType { sensor, camera, location, photos, videos }
+enum PermissionType {
+  sensor(0),
+  camera(1),
+  location(1),
+  photos(1),
+  videos(1);
+
+  const PermissionType(this.pritority)
+    : assert(
+        (pritority >= 0 && pritority < 3),
+        "Prirority must be between 0 and 2",
+      );
+  final int pritority;
+
+  bool get isHighPrirority => pritority == 0;
+  bool get isMediumPrirority => pritority == 1;
+  bool get isLowPrirority => pritority == 2;
+}
 
 class PermissionEntry {
   final PermissionType _type;
