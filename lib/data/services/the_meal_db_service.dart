@@ -85,24 +85,19 @@ enum AllowedQueryParams {
   toString() => name;
 }
 
-class TheMealDbService {
-  TheMealDbService._();
-
-  static final TheMealDbService _instance = TheMealDbService._();
-  static TheMealDbService get instance => _instance;
-
+abstract class TheMealDbService {
   String _apiKey = "1";
   bool get premiumRequestsAllowed => _apiKey != "1";
 
   SupportedApiVersion _defaultApiVersion = SupportedApiVersion.v1;
   SupportedApiVersion get apiVersion => _defaultApiVersion;
 
-  static void configure({
+  void configure({
     String? apiKey,
     SupportedApiVersion apiVersion = SupportedApiVersion.v1,
   }) {
-    if (apiKey != null) instance._apiKey = apiKey;
-    instance._defaultApiVersion = apiVersion;
+    if (apiKey != null) _apiKey = apiKey;
+    _defaultApiVersion = apiVersion;
   }
 
   Future<http.Response> searchMealByName({required String name}) async {
