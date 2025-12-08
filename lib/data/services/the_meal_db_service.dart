@@ -149,7 +149,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> lookupRandomMeal({required int id}) async {
+  Future<http.Response> lookupRandomMeal() async {
     try {
       final res = await makeRequest(MethodType.random);
       return res;
@@ -173,7 +173,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> listAllMealCategories({required int id}) async {
+  Future<http.Response> listAllMealCategories() async {
     try {
       final res = await makeRequest(MethodType.categories);
       return res;
@@ -187,7 +187,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> getLatestMeals({required int id}) async {
+  Future<http.Response> getLatestMeals() async {
     try {
       final res = await makeRequest(MethodType.latest);
       return res;
