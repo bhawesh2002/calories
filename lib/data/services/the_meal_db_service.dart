@@ -100,7 +100,7 @@ abstract class TheMealDbService {
     _defaultApiVersion = apiVersion;
   }
 
-  Future<http.Response> searchMealByName({required String name}) async {
+  Future<http.Response> searchMealByNameRequest({required String name}) async {
     try {
       final res = await makeRequest(
         MethodType.search,
@@ -113,7 +113,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> searchMealByFirstLetter({
+  Future<http.Response> searchMealByFirstLetterRequest({
     required String firstLetter,
   }) async {
     try {
@@ -132,7 +132,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> lookupMealDetailsById({required int id}) async {
+  Future<http.Response> lookupMealDetailsByIdRequest({required int id}) async {
     try {
       final res = await makeRequest(
         MethodType.lookup,
@@ -149,7 +149,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> lookupRandomMeal() async {
+  Future<http.Response> lookupRandomMealRequest() async {
     try {
       final res = await makeRequest(MethodType.random);
       return res;
@@ -159,7 +159,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> lookupTenRandomMeals() async {
+  Future<http.Response> lookupTenRandomMealsRequest() async {
     try {
       final res = await makeRequest(MethodType.randomSelection);
       return res;
@@ -173,7 +173,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> listAllMealCategories() async {
+  Future<http.Response> listAllMealCategoriesRequest() async {
     try {
       final res = await makeRequest(MethodType.categories);
       return res;
@@ -187,7 +187,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> getLatestMeals() async {
+  Future<http.Response> getLatestMealsRequest() async {
     try {
       final res = await makeRequest(MethodType.latest);
       return res;
@@ -197,7 +197,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> listAllCategories() async {
+  Future<http.Response> listAllCategoriesRequest() async {
     try {
       final res = await makeRequest(
         MethodType.list,
@@ -210,7 +210,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> listAllAreas() async {
+  Future<http.Response> listAllAreasRequest() async {
     try {
       final res = await makeRequest(
         MethodType.list,
@@ -223,7 +223,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> listAllIngredients() async {
+  Future<http.Response> listAllIngredientsRequest() async {
     try {
       final res = await makeRequest(
         MethodType.list,
@@ -236,7 +236,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> filterByIngredients({
+  Future<http.Response> filterByIngredientsRequest({
     required List<String> ingredientName,
   }) async {
     try {
@@ -255,7 +255,9 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> filterByCategory({required String category}) async {
+  Future<http.Response> filterByCategoryRequest({
+    required String category,
+  }) async {
     try {
       final res = await makeRequest(
         MethodType.filter,
@@ -268,7 +270,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> filterByArea({required String area}) async {
+  Future<http.Response> filterByAreaRequest({required String area}) async {
     try {
       final res = await makeRequest(
         MethodType.filter,
@@ -281,7 +283,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> getMealThumbnail(
+  Future<http.Response> getMealThumbnailRequest(
     String imageIdentifier,
     ImagePreviewSize size,
   ) async {
@@ -299,7 +301,7 @@ abstract class TheMealDbService {
     }
   }
 
-  Future<http.Response> getIngedientThumbnail(
+  Future<http.Response> getIngedientThumbnailRequest(
     String imageIdentifier,
     ImagePreviewSize size,
   ) async {
