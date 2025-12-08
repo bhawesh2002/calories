@@ -1,7 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:hive_ce_flutter/adapters.dart';
 
-class Meal {
-  final String id;
+class Meal extends HiveObject {
+  final String mealId;
   final String mealName;
   final String? alternateName;
   final String? category;
@@ -18,7 +19,7 @@ class Meal {
   final DateTime? dateModified;
 
   Meal({
-    required this.id,
+    required this.mealId,
     required this.mealName,
     required this.alternateName,
     required this.category,
@@ -47,7 +48,7 @@ class Meal {
       }
     });
     return Meal(
-      id: responseBody['idMeal'],
+      mealId: responseBody['idMeal'],
       mealName: responseBody["strMeal"],
       alternateName: responseBody["strMealAlternate"],
       category: responseBody["strCategory"],
@@ -66,7 +67,7 @@ class Meal {
   }
 
   Meal copyWith({
-    String? id,
+    String? mealId,
     String? mealName,
     String? alternateName,
     String? category,
@@ -83,7 +84,7 @@ class Meal {
     DateTime? dateModified,
   }) {
     return Meal(
-      id: id ?? this.id,
+      mealId: mealId ?? this.mealId,
       mealName: mealName ?? this.mealName,
       alternateName: alternateName ?? this.alternateName,
       category: category ?? this.category,
@@ -106,7 +107,7 @@ class Meal {
   bool operator ==(covariant Meal other) {
     if (identical(this, other)) return true;
 
-    return other.id == id &&
+    return other.mealId == mealId &&
         other.mealName == mealName &&
         other.alternateName == alternateName &&
         other.category == category &&
@@ -125,7 +126,7 @@ class Meal {
 
   @override
   int get hashCode {
-    return id.hashCode ^
+    return mealId.hashCode ^
         mealName.hashCode ^
         alternateName.hashCode ^
         category.hashCode ^
@@ -144,6 +145,6 @@ class Meal {
 
   @override
   String toString() {
-    return 'Meal(id: $id, mealName: $mealName, alternateName: $alternateName, category: $category, area: $area, instructions: $instructions, thumb: $thumb, tags: $tags, youtube: $youtube, ingredients: $ingredients, measures: $measures, source: $source, imageSource: $imageSource, creativeCommonsConfirmed: $creativeCommonsConfirmed, dateModified: $dateModified)';
+    return 'Meal(mealId: $mealId, mealName: $mealName, alternateName: $alternateName, category: $category, area: $area, instructions: $instructions, thumb: $thumb, tags: $tags, youtube: $youtube, ingredients: $ingredients, measures: $measures, source: $source, imageSource: $imageSource, creativeCommonsConfirmed: $creativeCommonsConfirmed, dateModified: $dateModified)';
   }
 }
