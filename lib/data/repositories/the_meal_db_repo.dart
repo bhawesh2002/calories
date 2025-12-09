@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:nativewrappers/_internal/vm/lib/ffi_allocation_patch.dart';
 
-import 'package:calories/data/models/meal.dart';
 import 'package:calories/data/models/the_meal_db_config.dart';
 import 'package:calories/data/services/the_meal_db_service.dart';
 import 'package:hive_ce/hive.dart';
