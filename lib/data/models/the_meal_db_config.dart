@@ -8,9 +8,9 @@ class TheMealDbConfig {
 
   int get cacheSizeInBytes => cacheSizeInMb * 1024 * 1024;
 
-  const TheMealDbConfig({
+  TheMealDbConfig({
     this.enableCache = true,
-    this.refreshDuration = defaultRefreshDuration,
+    this.refreshDuration = TheMealDbConfig.defaultRefreshDuration,
     this.forceRefreshOnEveryRequest = false,
     this.cacheSizeInMb = 10,
   });
