@@ -7,16 +7,20 @@ import 'package:calories/hive/hive_adapters.dart';
 
 extension HiveRegistrar on HiveInterface {
   void registerAdapters() {
+    registerAdapter(MealAdapter());
     registerAdapter(PermissionEntryAdapter());
     registerAdapter(PermissionLevelAdapter());
     registerAdapter(PermissionTypeAdapter());
+    registerAdapter(TheMealDbConfigAdapter());
   }
 }
 
 extension IsolatedHiveRegistrar on IsolatedHiveInterface {
   void registerAdapters() {
+    registerAdapter(MealAdapter());
     registerAdapter(PermissionEntryAdapter());
     registerAdapter(PermissionLevelAdapter());
     registerAdapter(PermissionTypeAdapter());
+    registerAdapter(TheMealDbConfigAdapter());
   }
 }
