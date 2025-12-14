@@ -1,14 +1,22 @@
 import 'package:flutter/foundation.dart';
-import 'package:hive_ce_flutter/adapters.dart';
 
-class Meal extends HiveObject {
-  final String mealId;
-  final String mealName;
+abstract class BaseMealDBObj<T> {
+  final String objId;
+  final String objName;
+  final String? thumb;
+
+  BaseMealDBObj({
+    required this.objId,
+    required this.objName,
+    required this.thumb,
+  });
+}
+
+class Meal extends BaseMealDBObj {
   final String? alternateName;
   final String? category;
   final String? area;
   final String? instructions;
-  final String? thumb;
   final List<String> tags;
   final String? youtube;
   final List<String> ingredients;
@@ -19,13 +27,13 @@ class Meal extends HiveObject {
   final DateTime? dateModified;
 
   Meal({
-    required this.mealId,
-    required this.mealName,
+    required String mealId,
+    required String mealName,
     required this.alternateName,
     required this.category,
     required this.area,
     required this.instructions,
-    required this.thumb,
+    super.thumb,
     required this.tags,
     required this.youtube,
     required this.ingredients,
@@ -34,7 +42,10 @@ class Meal extends HiveObject {
     required this.imageSource,
     required this.creativeCommonsConfirmed,
     required this.dateModified,
-  });
+  }) : super(objId: mealId, objName: mealName);
+
+  String get mealId => super.objId;
+  String get mealName => super.objName;
 
   factory Meal.fromResponseMap(Map<String, dynamic> responseBody) {
     final List<String> ingredients = [];
