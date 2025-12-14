@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-abstract class BaseMealDBObj<T> {
+class BaseMealDBObj<T> {
   final String objId;
   final String objName;
   final String? thumb;
